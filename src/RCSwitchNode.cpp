@@ -25,6 +25,15 @@ void RCSwitchNode::Init(v8::Local<v8::Object> exports) {
   Nan::SetPrototypeMethod(tpl, "switchOn", SwitchOn);
   Nan::SetPrototypeMethod(tpl, "switchOff", SwitchOff);
   Nan::SetPrototypeMethod(tpl, "sendTriState", SendTriState);
+  Nan::SetPrototypeMethod(tpl, "enableReceive", EnableReceive);
+  Nan::SetPrototypeMethod(tpl, "disableReceive", DisableReceive);
+  Nan::SetPrototypeMethod(tpl, "available", Available);
+  Nan::SetPrototypeMethod(tpl, "resetAvailable", ResetAvailable);
+  Nan::SetPrototypeMethod(tpl, "getReceivedValue", GetReceivedValue);
+  Nan::SetPrototypeMethod(tpl, "getReceivedBitlength", GetReceivedBitlength);
+  Nan::SetPrototypeMethod(tpl, "getReceivedDelay", GetReceivedDelay);
+  Nan::SetPrototypeMethod(tpl, "getReceivedProtocol", GetReceivedProtocol);
+  Nan::SetPrototypeMethod(tpl, "getReceivedRawdata", GetReceivedRawdata);
 
   constructor.Reset(tpl->GetFunction());
   exports->Set(Nan::New("RCSwitch").ToLocalChecked(), tpl->GetFunction());
@@ -148,4 +157,89 @@ void RCSwitchNode::SetProtocol(v8::Local<v8::String> property, v8::Local<v8::Val
 void RCSwitchNode::GetProtocol(v8::Local<v8::String> property, const Nan::PropertyCallbackInfo<v8::Value>& info) {
   RCSwitchNode* obj = ObjectWrap::Unwrap<RCSwitchNode>(info.Holder());
   info.GetReturnValue().Set(Nan::New<v8::Uint32>(obj->rcswitch.getReceivedProtocol()));
+}
+
+// notification.enableReceive();
+void RCSwitchNode::EnableReceive(const Nan::FunctionCallbackInfo<v8::Value>& info) {
+  Nan::HandleScope scope;
+  RCSwitchNode* obj = ObjectWrap::Unwrap<RCSwitchNode>(info.Holder());
+
+  v8::Local<v8::Value> pinNr = info[0];
+  if(pinNr->IsInt32()) {
+    obj->rcswitch.enableReceive(pinNr->Int32Value());
+    info.GetReturnValue().Set(true);
+  } else {
+    info.GetReturnValue().Set(false);
+  }
+}
+
+// notification.disableReceive();
+void RCSwitchNode::DisableReceive(const Nan::FunctionCallbackInfo<v8::Value>& info) {
+  Nan::HandleScope scope;
+
+  RCSwitchNode* obj = ObjectWrap::Unwrap<RCSwitchNode>(info.Holder());
+  obj->rcswitch.disableReceive();
+  info.GetReturnValue().Set(true);
+}
+
+// notification.available();
+void RCSwitchNode::Available(const Nan::FunctionCallbackInfo<v8::Value>& info) {
+  Nan::HandleScope scope;
+  RCSwitchNode* obj = ObjectWrap::Unwrap<RCSwitchNode>(info.Holder());
+
+  info.GetReturnValue().Set(obj->rcswitch.available());
+}
+
+// notification.resetAvailable();
+void RCSwitchNode::ResetAvailable(const Nan::FunctionCallbackInfo<v8::Value>& info) {
+  Nan::HandleScope scope;
+  RCSwitchNode* obj = ObjectWrap::Unwrap<RCSwitchNode>(info.Holder());
+
+  obj->rcswitch.resetAvailable();
+  info.GetReturnValue().Set(true);
+}
+
+// notification.getReceivedValue();
+void RCSwitchNode::GetReceivedValue(const Nan::FunctionCallbackInfo<v8::Value>& info) {
+  Nan::HandleScope scope;
+  RCSwitchNode* obj = ObjectWrap::Unwrap<RCSwitchNode>(info.Holder());
+
+  info.GetReturnValue().Set((uint32_t)obj->rcswitch.getReceivedValue());
+}
+
+// notification.getReceivedBitlength();
+void RCSwitchNode::GetReceivedBitlength(const Nan::FunctionCallbackInfo<v8::Value>& info) {
+  Nan::HandleScope scope;
+  RCSwitchNode* obj = ObjectWrap::Unwrap<RCSwitchNode>(info.Holder());
+
+  info.GetReturnValue().Set(obj->rcswitch.getReceivedBitlength());
+}
+
+// notification.getReceivedDelay();
+void RCSwitchNode::GetReceivedDelay(const Nan::FunctionCallbackInfo<v8::Value>& info) {
+  Nan::HandleScope scope;
+  RCSwitchNode* obj = ObjectWrap::Unwrap<RCSwitchNode>(info.Holder());
+
+  info.GetReturnValue().Set(obj->rcswitch.getReceivedDelay());
+}
+
+// notification.getReceivedProtocol();
+void RCSwitchNode::GetReceivedProtocol(const Nan::FunctionCallbackInfo<v8::Value>& info) {
+  Nan::HandleScope scope;
+  RCSwitchNode* obj = ObjectWrap::Unwrap<RCSwitchNode>(info.Holder());
+
+  info.GetReturnValue().Set(obj->rcswitch.getReceivedProtocol());
+}
+
+// notification.getReceivedRawdata();
+void RCSwitchNode::GetReceivedRawdata(const Nan::FunctionCallbackInfo<v8::Value>& info) {
+  Nan::HandleScope scope;
+  RCSwitchNode* obj = ObjectWrap::Unwrap<RCSwitchNode>(info.Holder());
+
+  unsigned int* data = obj->rcswitch.getReceivedRawdata();
+  v8::Local<v8::Array> array = Nan::New<v8::Array>(RCSWITCH_MAX_CHANGES);
+  for (unsigned int i = 0; i < RCSWITCH_MAX_CHANGES; i++) {
+    Nan::Set(array, i, Nan::New(data[i]));
+  }
+  info.GetReturnValue().Set(array);
 }
