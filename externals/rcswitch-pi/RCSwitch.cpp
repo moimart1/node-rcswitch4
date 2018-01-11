@@ -38,6 +38,7 @@
     // so we must normalize these for the ARM processor:
     #define PROGMEM
     #define memcpy_P(dest, src, num) memcpy((dest), (src), (num))
+    unsigned long enabledReceiverPins = 0;
 #endif
 
 #if defined(ESP8266) || defined(ESP32)
@@ -545,7 +546,11 @@ void RCSwitch::enableReceive() {
     RCSwitch::nReceivedValue = 0;
     RCSwitch::nReceivedBitlength = 0;
 #if defined(RaspberryPi) // Raspberry Pi
-    wiringPiISR(this->nReceiverInterrupt, INT_EDGE_BOTH, &handleInterrupt);
+    unsigned long pin = 1 << this->nReceiverInterrupt;
+    if (!(enabledReceiverPins & pin)) {
+        enabledReceiverPins |= pin;
+        wiringPiISR(this->nReceiverInterrupt, INT_EDGE_BOTH, &handleInterrupt);
+    }
 #else // Arduino
     attachInterrupt(this->nReceiverInterrupt, handleInterrupt, CHANGE);
 #endif
