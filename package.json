@@ -1,14 +1,11 @@
 {
-  "name": "rcswitch",
-  "version": "0.3.1",
+  "name": "rcswitch2",
+  "version": "0.1.0",
   "description": "Control your wireless power outlet sockets with RCSwitch for the Raspberry Pi",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
-    "url": "git://github.com/marvinroger/node-rcswitch.git"
+    "url": "git://github.com/insolite/node-rcswitch2.git"
   },
   "keywords": [
     "rpi",
@@ -21,15 +18,18 @@
     "outlet"
   ],
   "engines": {
-    "node" : ">=0.8"
+    "node": ">=0.8"
   },
-  "author": "Marvin Roger <bonjourmarvin@marvinroger.fr> (http://www.marvinroger.fr/)",
+  "contributors": [
+    "Marvin Roger <bonjourmarvin@marvinroger.fr> (http://www.marvinroger.fr/)",
+    "Oleg Krasnikov <a.insolite@gmail.com>"
+  ],
   "license": "GPL-2.0",
   "gypfile": true,
   "bugs": {
-    "url": "https://github.com/marvinroger/node-rcswitch/issues"
+    "url": "https://github.com/insolite/node-rcswitch2/issues"
   },
-  "homepage": "https://github.com/marvinroger/node-rcswitch",
+  "homepage": "https://github.com/insolite/node-rcswitch2",
   "dependencies": {
     "bindings": "^1.2.1",
     "nan": "^2.0.8"
