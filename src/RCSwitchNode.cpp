@@ -15,9 +15,6 @@ void RCSwitchNode::Init(v8::Local<v8::Object> exports) {
   tpl->SetClassName(Nan::New("RCSwitch").ToLocalChecked());
   tpl->InstanceTemplate()->SetInternalFieldCount(1); // 1 since this is a constructor function
 
-  Nan::SetAccessor(tpl->InstanceTemplate(), Nan::New("protocol").ToLocalChecked(), GetProtocol); //, SetProtocol); TODO <- Error at compile-time... ?
-  Nan::SetPrototypeMethod(tpl, "send", Send);
-
   // Prototype
   Nan::SetPrototypeMethod(tpl, "send", Send);
   Nan::SetPrototypeMethod(tpl, "enableTransmit", EnableTransmit);
@@ -145,18 +142,23 @@ void RCSwitchNode::SwitchOff(const Nan::FunctionCallbackInfo<v8::Value>& info) {
   SwitchOp(info, false);
 }
 
-// notification.protocol=
-void RCSwitchNode::SetProtocol(v8::Local<v8::String> property, v8::Local<v8::Value> value, const Nan::PropertyCallbackInfo<v8::Value>& info) {
+// notification.setProtocol()
+void RCSwitchNode::SetProtocol(const Nan::PropertyCallbackInfo<v8::Value>& info) {
   RCSwitchNode* obj = ObjectWrap::Unwrap<RCSwitchNode>(info.Holder());
 
-  if(value->IsInt32())
-    obj->rcswitch.setProtocol(value->Int32Value());
-}
+  if (info.Length() == 1) {
+    v8::Local<v8::Value> protocol = info[0];
+    if(protocol->IsInt32()) {
+      obj->rcswitch.setProtocol(value->Int32Value());
+    }
+  } else if (info.Length() == 2)
+    v8::Local<v8::Value> protocol = info[0];
+    v8::Local<v8::Value> pulseLength = info[1];
 
-// notification.protocol
-void RCSwitchNode::GetProtocol(v8::Local<v8::String> property, const Nan::PropertyCallbackInfo<v8::Value>& info) {
-  RCSwitchNode* obj = ObjectWrap::Unwrap<RCSwitchNode>(info.Holder());
-  info.GetReturnValue().Set(Nan::New<v8::Uint32>(obj->rcswitch.getReceivedProtocol()));
+    if(protocol->IsInt32() && pulseLength->IsInt32()) {
+      obj->rcswitch.setProtocol(protocol->Int32Value(), pulseLength->Int32Value());
+    }
+  }
 }
 
 // notification.enableReceive();
