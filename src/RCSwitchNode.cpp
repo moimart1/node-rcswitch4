@@ -151,7 +151,7 @@ void RCSwitchNode::SetProtocol(const Nan::FunctionCallbackInfo<v8::Value>& info)
     if(protocol->IsInt32()) {
       obj->rcswitch.setProtocol(protocol->Int32Value());
     }
-  } else if (info.Length() == 2)
+  } else if (info.Length() == 2) {
     v8::Local<v8::Value> protocol = info[0];
     v8::Local<v8::Value> pulseLength = info[1];
 
