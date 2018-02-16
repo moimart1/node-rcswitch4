@@ -34,7 +34,7 @@ class RCSwitchNode : public Nan::ObjectWrap {
   static void GetReceivedDelay(const Nan::FunctionCallbackInfo<v8::Value>& info);
   static void GetReceivedProtocol(const Nan::FunctionCallbackInfo<v8::Value>& info);
   static void GetReceivedRawdata(const Nan::FunctionCallbackInfo<v8::Value>& info);
-  static void SetProtocol(const Nan::PropertyCallbackInfo<v8::Value>& info);
+  static void SetProtocol(const Nan::FunctionCallbackInfo<v8::Value>& info);
 };
 
 #endif

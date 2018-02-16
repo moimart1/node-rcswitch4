@@ -143,7 +143,7 @@ void RCSwitchNode::SwitchOff(const Nan::FunctionCallbackInfo<v8::Value>& info) {
 }
 
 // notification.setProtocol()
-void RCSwitchNode::SetProtocol(const Nan::PropertyCallbackInfo<v8::Value>& info) {
+void RCSwitchNode::SetProtocol(const Nan::FunctionCallbackInfo<v8::Value>& info) {
   RCSwitchNode* obj = ObjectWrap::Unwrap<RCSwitchNode>(info.Holder());
 
   if (info.Length() == 1) {
