@@ -149,7 +149,7 @@ void RCSwitchNode::SetProtocol(const Nan::FunctionCallbackInfo<v8::Value>& info)
   if (info.Length() == 1) {
     v8::Local<v8::Value> protocol = info[0];
     if(protocol->IsInt32()) {
-      obj->rcswitch.setProtocol(value->Int32Value());
+      obj->rcswitch.setProtocol(protocol->Int32Value());
     }
   } else if (info.Length() == 2)
     v8::Local<v8::Value> protocol = info[0];
