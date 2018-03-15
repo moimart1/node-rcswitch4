@@ -19,6 +19,8 @@ void RCSwitchNode::Init(v8::Local<v8::Object> exports) {
   Nan::SetPrototypeMethod(tpl, "send", Send);
   Nan::SetPrototypeMethod(tpl, "enableTransmit", EnableTransmit);
   Nan::SetPrototypeMethod(tpl, "disableTransmit", DisableTransmit);
+  Nan::SetPrototypeMethod(tpl, "setPulseLength", SetPulseLength);
+  Nan::SetPrototypeMethod(tpl, "setRepeatTransmit", SetRepeatTransmit);
   Nan::SetPrototypeMethod(tpl, "switchOn", SwitchOn);
   Nan::SetPrototypeMethod(tpl, "switchOff", SwitchOff);
   Nan::SetPrototypeMethod(tpl, "sendTriState", SendTriState);
@@ -145,6 +147,34 @@ void RCSwitchNode::SwitchOn(const Nan::FunctionCallbackInfo<v8::Value>& info) {
 
 void RCSwitchNode::SwitchOff(const Nan::FunctionCallbackInfo<v8::Value>& info) {
   SwitchOp(info, false);
+}
+
+// notification.setPulseLength();
+void RCSwitchNode::SetPulseLength(const Nan::FunctionCallbackInfo<v8::Value>& info) {
+  Nan::HandleScope scope;
+  RCSwitchNode* obj = ObjectWrap::Unwrap<RCSwitchNode>(info.Holder());
+
+  v8::Local<v8::Value> pLength = info[0];
+  if(pLength->IsInt32()) {
+    obj->rcswitch.setPulseLength(pLength->Int32Value());
+    info.GetReturnValue().Set(true);
+  } else {
+    info.GetReturnValue().Set(false);
+  }
+}
+
+// notification.setRepeatTransmit();
+void RCSwitchNode::SetRepeatTransmit(const Nan::FunctionCallbackInfo<v8::Value>& info) {
+  Nan::HandleScope scope;
+  RCSwitchNode* obj = ObjectWrap::Unwrap<RCSwitchNode>(info.Holder());
+
+  v8::Local<v8::Value> nRepeat = info[0];
+  if(nRepeat->IsInt32()) {
+    obj->rcswitch.setRepeatTransmit(nRepeat->Int32Value());
+    info.GetReturnValue().Set(true);
+  } else {
+    info.GetReturnValue().Set(false);
+  }
 }
 
 // notification.setProtocol()
