@@ -1,11 +1,11 @@
 {
-  "name": "rcswitch2",
+  "name": "rcswitch-gpiomem2",
   "version": "0.1.0",
   "description": "Control your wireless power outlet sockets with RCSwitch for the Raspberry Pi",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/insolite/node-rcswitch2.git"
+    "url": "git://github.com/fredericvl/node-rcswitch-gpiomem2.git"
   },
   "keywords": [
     "rpi",
@@ -27,9 +27,9 @@
   "license": "GPL-2.0",
   "gypfile": true,
   "bugs": {
-    "url": "https://github.com/insolite/node-rcswitch2/issues"
+    "url": "https://github.com/fredericvl/node-rcswitch-gpiomem2/issues"
   },
-  "homepage": "https://github.com/insolite/node-rcswitch2",
+  "homepage": "https://github.com/fredericvl/node-rcswitch-gpiomem2",
   "dependencies": {
     "bindings": "^1.2.1",
     "nan": "^2.0.8"
