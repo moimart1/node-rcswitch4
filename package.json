@@ -1,6 +1,6 @@
 {
   "name": "rcswitch-gpiomem2",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "Control your wireless power outlet sockets with RCSwitch for the Raspberry Pi",
   "main": "index.js",
   "repository": {
