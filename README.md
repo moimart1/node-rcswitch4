@@ -1,20 +1,21 @@
-node-rcswitch2
+node-rcswitch3
 ==============
 
-[![NPM version](https://badge.fury.io/js/rcswitch2.svg)](http://badge.fury.io/js/rcswitch2)
+[![NPM version](https://badge.fury.io/js/rcswitch3.svg)](http://badge.fury.io/js/rcswitch3)
 
 Node bindings for the [rcswitch](https://github.com/sui77/rc-switch).
 
-This is an extended version of [node-rcswitch](https://github.com/marvinroger/node-rcswitch) project.
+## Changes
+
+This is an extended version of [node-rcswitch](https://github.com/marvinroger/node-rcswitch) project and the [node-rcswitch2](https://github.com/fredericvl/node-rcswitch-gpiomem2) project.
 
 Comparing to original [node-rcswitch](https://github.com/marvinroger/node-rcswitch) it has:
 * [#9](https://github.com/marvinroger/node-rcswitch/issues/9) - Replaced [outdated](https://github.com/r10r/rcswitch-pi/issues/25) [rcswitch-pi](https://github.com/r10r/rcswitch-pi) dependency with the latest version of [rc-switch](https://github.com/sui77/rc-switch) project
 * [#11](https://github.com/marvinroger/node-rcswitch/issues/11) - Added code receiving bindings
 * [#13](https://github.com/marvinroger/node-rcswitch/issues/13) - Exporting of class instead of already created instance
+* __Updated to work with nodejs v10.x.x__ fixing the build error that ocurred
 
 Although the project is now using generic RcSwitch library, it's still intended to be used on Raspberry Pi only.
-
-It should be compatible with all versions of Node.js starting from 0.8.
 
 ## Requirements
 
@@ -72,7 +73,7 @@ Return true.
 
 #### Type A
 
-![Type A switch](https://raw.github.com/insolite/node-rcswitch2/master/img/type_a.jpg "Type A switch")
+![Type A switch](https://raw.github.com/jdrucey/node-rcswitch3/master/img/type_a.jpg "Type A switch")
 
 ##### rcswitch.switchOn(`group`, `switch`)
 
@@ -94,7 +95,7 @@ Return true.
 
 #### Type B
 
-![Type B switch](https://raw.github.com/insolite/node-rcswitch2/master/img/type_b.jpg "Type B switch")
+![Type B switch](https://raw.github.com/jdrucey/node-rcswitch3/master/img/type_b.jpg "Type B switch")
 
 ##### rcswitch.switchOn(`group`, `switch`)
 
