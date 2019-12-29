@@ -73,7 +73,7 @@ Return true.
 
 #### Type A
 
-![Type A switch](https://raw.github.com/b-seite/node-rcswitch3/master/img/type_a.jpg "Type A switch")
+![Type A switch](img/type_a.jpg "Type A switch")
 
 ##### rcswitch.switchOn(`group`, `switch`)
 
@@ -95,7 +95,7 @@ Return true.
 
 #### Type B
 
-![Type B switch](https://raw.github.com/b-seite/node-rcswitch3/master/img/type_b.jpg "Type B switch")
+![Type B switch](/img/type_b.jpg "Type B switch")
 
 ##### rcswitch.switchOn(`group`, `switch`)
 
