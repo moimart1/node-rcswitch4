@@ -35,7 +35,7 @@ void RCSwitchNode::Init(v8::Local<v8::Object> exports) {
   Nan::SetPrototypeMethod(tpl, "getReceivedRawdata", GetReceivedRawdata);
   Nan::SetPrototypeMethod(tpl, "setProtocol", SetProtocol);
 
-  constructor.Reset(tpl->GetFunction());
+  constructor.Reset(Nan::GetFunction(tpl).ToLocalChecked());
   exports->Set(Nan::New("RCSwitch").ToLocalChecked(), Nan::GetFunction(tpl).ToLocalChecked());
 }
 
