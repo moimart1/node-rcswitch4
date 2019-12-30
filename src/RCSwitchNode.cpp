@@ -52,7 +52,7 @@ void RCSwitchNode::SwitchOp(const Nan::FunctionCallbackInfo<v8::Value>& info, bo
     v8::Local<v8::Value> swtch = info[1];
 
     if(group->IsInt32() && swtch->IsInt32()) {
-      switchOp2(group->Int32Value(), swtch->Int32Value(Nan::GetCurrentContext()).FromJust());
+      switchOp2(group->Int32Value(Nan::GetCurrentContext()).FromJust(), swtch->Int32Value(Nan::GetCurrentContext()).FromJust());
       info.GetReturnValue().Set(true);
     } else if(group->IsString() && swtch->IsInt32()) {
       Nan::Utf8String sGroup(group);
