@@ -52,13 +52,13 @@ void RCSwitchNode::SwitchOp(const Nan::FunctionCallbackInfo<v8::Value>& info, bo
     v8::Local<v8::Value> swtch = info[1];
 
     if(group->IsInt32() && swtch->IsInt32()) {
-      switchOp2(group->Int32Value(), swtch->Int32Value());
+      switchOp2(group->Int32Value(), swtch->Int32Value(Nan::GetCurrentContext()).FromJust());
       info.GetReturnValue().Set(true);
     } else if(group->IsString() && swtch->IsInt32()) {
       Nan::Utf8String sGroup(group);
 
       if(sGroup.length() >= 5) {
-        switchOp2(*sGroup, swtch->Int32Value());
+        switchOp2(*sGroup, swtch->Int32Value(Nan::GetCurrentContext()).FromJust());
         info.GetReturnValue().Set(true);
       }
     }
@@ -71,7 +71,7 @@ void RCSwitchNode::SwitchOp(const Nan::FunctionCallbackInfo<v8::Value>& info, bo
       Nan::Utf8String v8str(famly);
 
       if(v8str.length() > 0) {
-        switchOp3(*(*v8str), group->Int32Value(), devce->Int32Value());
+        switchOp3(*(*v8str), group->Int32Value(Nan::GetCurrentContext()).FromJust(), devce->Int32Value(Nan::GetCurrentContext()).FromJust());
         info.GetReturnValue().Set(true);
       }
     }
@@ -99,7 +99,7 @@ void RCSwitchNode::Send(const Nan::FunctionCallbackInfo<v8::Value>& info) {
   RCSwitchNode* obj = ObjectWrap::Unwrap<RCSwitchNode>(info.Holder());
 
   if (info[0]->IsInt32()) {
-    obj->rcswitch.send(info[0]->Int32Value(), 24);
+    obj->rcswitch.send(info[0]->Int32Value(Nan::GetCurrentContext()).FromJust(), 24);
   } else if(info[0]->IsString()) {
     Nan::Utf8String v8str(info[0]);
     obj->rcswitch.send(*v8str);
@@ -125,7 +125,7 @@ void RCSwitchNode::EnableTransmit(const Nan::FunctionCallbackInfo<v8::Value>& in
 
   v8::Local<v8::Value> pinNr = info[0];
   if(pinNr->IsInt32()) {
-    obj->rcswitch.enableTransmit(pinNr->Int32Value());
+    obj->rcswitch.enableTransmit(pinNr->Int32Value(Nan::GetCurrentContext()).FromJust());
     info.GetReturnValue().Set(true);
   } else {
     info.GetReturnValue().Set(false);
@@ -156,7 +156,7 @@ void RCSwitchNode::SetPulseLength(const Nan::FunctionCallbackInfo<v8::Value>& in
 
   v8::Local<v8::Value> pLength = info[0];
   if(pLength->IsInt32()) {
-    obj->rcswitch.setPulseLength(pLength->Int32Value());
+    obj->rcswitch.setPulseLength(pLength->Int32Value(Nan::GetCurrentContext()).FromJust());
     info.GetReturnValue().Set(true);
   } else {
     info.GetReturnValue().Set(false);
@@ -170,7 +170,7 @@ void RCSwitchNode::SetRepeatTransmit(const Nan::FunctionCallbackInfo<v8::Value>&
 
   v8::Local<v8::Value> nRepeat = info[0];
   if(nRepeat->IsInt32()) {
-    obj->rcswitch.setRepeatTransmit(nRepeat->Int32Value());
+    obj->rcswitch.setRepeatTransmit(nRepeat->Int32Value(Nan::GetCurrentContext()).FromJust());
     info.GetReturnValue().Set(true);
   } else {
     info.GetReturnValue().Set(false);
@@ -184,14 +184,14 @@ void RCSwitchNode::SetProtocol(const Nan::FunctionCallbackInfo<v8::Value>& info)
   if (info.Length() == 1) {
     v8::Local<v8::Value> protocol = info[0];
     if(protocol->IsInt32()) {
-      obj->rcswitch.setProtocol(protocol->Int32Value());
+      obj->rcswitch.setProtocol(protocol->Int32Value(Nan::GetCurrentContext()).FromJust());
     }
   } else if (info.Length() == 2) {
     v8::Local<v8::Value> protocol = info[0];
     v8::Local<v8::Value> pulseLength = info[1];
 
     if(protocol->IsInt32() && pulseLength->IsInt32()) {
-      obj->rcswitch.setProtocol(protocol->Int32Value(), pulseLength->Int32Value());
+      obj->rcswitch.setProtocol(protocol->Int32Value(Nan::GetCurrentContext()).FromJust(), pulseLength->Int32Value(Nan::GetCurrentContext()).FromJust());
     }
   }
 }
@@ -203,7 +203,7 @@ void RCSwitchNode::EnableReceive(const Nan::FunctionCallbackInfo<v8::Value>& inf
 
   v8::Local<v8::Value> pinNr = info[0];
   if(pinNr->IsInt32()) {
-    obj->rcswitch.enableReceive(pinNr->Int32Value());
+    obj->rcswitch.enableReceive(pinNr->Int32Value(Nan::GetCurrentContext()).FromJust());
     info.GetReturnValue().Set(true);
   } else {
     info.GetReturnValue().Set(false);
