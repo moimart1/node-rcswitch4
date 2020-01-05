@@ -7,13 +7,13 @@ Node bindings for the [rcswitch](https://github.com/sui77/rc-switch).
 
 ## Changes
 
-This is an extended version of [node-rcswitch](https://github.com/marvinroger/node-rcswitch) project and the [node-rcswitch2](https://github.com/fredericvl/node-rcswitch-gpiomem2) project.
+This is an extended version of [node-rcswitch](https://github.com/marvinroger/node-rcswitch) project and the [node-rcswitch2](https://github.com/fredericvl/node-rcswitch-gpiomem2)and he [node-rcswitch-gpiomem3](https://github.com/jdrucey/node-rcswitch-gpiomem3) project.
 
 Comparing to original [node-rcswitch](https://github.com/marvinroger/node-rcswitch) it has:
 * [#9](https://github.com/marvinroger/node-rcswitch/issues/9) - Replaced [outdated](https://github.com/r10r/rcswitch-pi/issues/25) [rcswitch-pi](https://github.com/r10r/rcswitch-pi) dependency with the latest version of [rc-switch](https://github.com/sui77/rc-switch) project
 * [#11](https://github.com/marvinroger/node-rcswitch/issues/11) - Added code receiving bindings
 * [#13](https://github.com/marvinroger/node-rcswitch/issues/13) - Exporting of class instead of already created instance
-* __Updated to work with nodejs v10.x.x__ fixing the build error that ocurred
+* __Updated to work with nodejs v12.x.x__ fixing the build error that ocurred
 
 Although the project is now using generic RcSwitch library, it's still intended to be used on Raspberry Pi only.
 
