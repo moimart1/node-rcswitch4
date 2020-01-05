@@ -1,7 +1,7 @@
 node-rcswitch4
 ==============
 
-[![NPM version](https://badge.fury.io/js/rcswitch-gpiomem3.svg)](http://badge.fury.io/js/rcswitch-gpiomem3)
+[![NPM version](https://badge.fury.io/js/rcswitch4.svg)](http://badge.fury.io/js/rcswitch4)
 
 Node bindings for the [rcswitch](https://github.com/sui77/rc-switch).
 
