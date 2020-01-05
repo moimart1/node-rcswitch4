@@ -1,4 +1,4 @@
-node-rcswitch3
+node-rcswitch4
 ==============
 
 [![NPM version](https://badge.fury.io/js/rcswitch-gpiomem3.svg)](http://badge.fury.io/js/rcswitch-gpiomem3)
@@ -7,7 +7,7 @@ Node bindings for the [rcswitch](https://github.com/sui77/rc-switch).
 
 ## Changes
 
-This is an extended version of [node-rcswitch](https://github.com/marvinroger/node-rcswitch) project and the [node-rcswitch2](https://github.com/fredericvl/node-rcswitch-gpiomem2)and he [node-rcswitch-gpiomem3](https://github.com/jdrucey/node-rcswitch-gpiomem3) project.
+This is an extended version of [node-rcswitch](https://github.com/marvinroger/node-rcswitch) project, the [node-rcswitch2](https://github.com/fredericvl/node-rcswitch-gpiomem2)and the [node-rcswitch-gpiomem3](https://github.com/jdrucey/node-rcswitch-gpiomem3) project.
 
 Comparing to original [node-rcswitch](https://github.com/marvinroger/node-rcswitch) it has:
 * [#9](https://github.com/marvinroger/node-rcswitch/issues/9) - Replaced [outdated](https://github.com/r10r/rcswitch-pi/issues/25) [rcswitch-pi](https://github.com/r10r/rcswitch-pi) dependency with the latest version of [rc-switch](https://github.com/sui77/rc-switch) project
