@@ -7,7 +7,6 @@
     "type": "git",
     "url": "git://github.com/b-seite/node-rcswitch4.git"
   },
-  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
   "keywords": [
     "rpi",
     "raspberrypi",
